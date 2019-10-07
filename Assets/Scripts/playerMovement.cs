@@ -18,14 +18,14 @@ public class playerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if (Input.GetKey(KeyCode.RightArrow))
-        //{
-        //    rb.AddForce(transform.right * forwardSpeed, ForceMode.Force);
-        //}
-        //if (Input.GetKey(KeyCode.LeftArrow))
-        //{
-        //    rb.AddForce(-transform.right * forwardSpeed, ForceMode.Force);
-        //}
+        if (Input.GetKey(KeyCode.RightArrow))
+        {
+            rb.AddForce(transform.right * forwardSpeed, ForceMode.Force);
+        }
+        if (Input.GetKey(KeyCode.LeftArrow))
+        {
+            rb.AddForce(-transform.right * forwardSpeed, ForceMode.Force);
+        }
 
         if (Input.GetKey(KeyCode.UpArrow))
         {
