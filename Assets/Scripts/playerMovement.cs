@@ -13,6 +13,7 @@ public class playerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
+
     }
 
     // Update is called once per frame
@@ -20,11 +21,15 @@ public class playerMovement : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.RightArrow))
         {
-            rb.AddForce(transform.right * forwardSpeed, ForceMode.Force);
+            //rb.AddForce(transform.right * horizontalSpeed, ForceMode.Impulse);
+            transform.position += (transform.right * horizontalSpeed) * Time.deltaTime;
         }
+
         if (Input.GetKey(KeyCode.LeftArrow))
         {
-            rb.AddForce(-transform.right * forwardSpeed, ForceMode.Force);
+            // rb.AddForce(-transform.right * horizontalSpeed, ForceMode.Impulse);
+            transform.position += (-transform.right * horizontalSpeed) * Time.deltaTime;
+
         }
 
         if (Input.GetKey(KeyCode.UpArrow))
