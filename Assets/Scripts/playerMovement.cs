@@ -72,5 +72,6 @@ public class playerMovement : MonoBehaviour
             transform.position += (-transform.right * horizontalSpeed) * Time.deltaTime;
 
         }
+
     }
 }
