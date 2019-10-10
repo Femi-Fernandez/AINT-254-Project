@@ -101,7 +101,10 @@ public class PlayerDodge : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(gameObject.transform.position, gameObject.transform.forward, out hit, raycastRange))
             {
-                Debug.Log(hit.transform.name);
+                Debug.Log(hit.distance);
+                gameObject.GetComponent<playerMovement>();
+
+          
             }
 
         }
