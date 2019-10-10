@@ -16,7 +16,7 @@ public class playerMovement : MonoBehaviour
 
     float speed;
     public float maxSpeed = 200.0f;
-    public static float baseMaxSpeed = 100.0f;
+    public float baseMaxSpeed = 100.0f;
     public float current;
 
     void Start()

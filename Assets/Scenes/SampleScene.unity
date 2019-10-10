@@ -2934,7 +2934,7 @@ GameObject:
   - component: {fileID: 1639034148}
   m_Layer: 0
   m_Name: obstacle
-  m_TagString: Untagged
+  m_TagString: spike
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3006,8 +3006,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1639034143}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.719999, y: 2.57, z: 41.1}
-  m_LocalScale: {x: 8.507277, y: 1, z: 1}
+  m_LocalPosition: {x: 15.942, y: 2.57, z: 41.1}
+  m_LocalScale: {x: 16.955002, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 5
@@ -3503,6 +3503,7 @@ GameObject:
   - component: {fileID: 2001438430}
   - component: {fileID: 2001438425}
   - component: {fileID: 2001438431}
+  - component: {fileID: 2001438432}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -3523,9 +3524,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   horizontalSpeed: 8
-  boostForwardSpeed: 40
-  baseForwardSpeed: 20
+  boostForwardSpeed: 80
+  baseForwardSpeed: 40
   maxSpeed: 200
+  baseMaxSpeed: 100
   current: 0
 --- !u!65 &2001438426
 BoxCollider:
@@ -3630,6 +3632,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dodgeDelay: 0
   dodgeTime: 0
+  boostTimer: 0
+  raycastRange: 50
+--- !u!114 &2001438432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2001438424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 710a795858190a54ba86765b91929901, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2031612356
 GameObject:
   m_ObjectHideFlags: 0
