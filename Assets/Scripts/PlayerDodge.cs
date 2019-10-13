@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class PlayerDodge : MonoBehaviour
 {
-    public float dodgeDelay;
+    Rigidbody rb;
+    float dodgeDelay;
     float dodgeDelayDefault = 1.0f;
 
-    public float dodgeTime;
+    float dodgeTime;
     float dodgeTimeDefault = 0.1f;
     bool canDodge = true;
 
@@ -15,11 +16,17 @@ public class PlayerDodge : MonoBehaviour
     float boostTimerDefault = 1.0f;
     bool canBoost = true;
 
-    public float raycastRange = 50f;
+    float raycastRange = 50f;
+
+    public float zSpeed;
+    //public float forwardSpeed;
+
+    private playerMovement PlayerMovement;
     // Start is called before the first frame update
     void Start()
     {
-        
+        rb = GetComponent<Rigidbody>();
+        PlayerMovement = gameObject.GetComponent<playerMovement>();
     }
 
     // Update is called once per frame
@@ -62,12 +69,14 @@ public class PlayerDodge : MonoBehaviour
 
     void dodgeRight()
     {
+        
         boostCheck();
         canBoost = false;
         boostTimer = boostTimerDefault;
 
         dodgeTime -= Time.deltaTime;
         transform.Translate(new Vector3(1, 0, 0));
+
         if (dodgeTime <= 0)
         {
             dodgeDelay = dodgeDelayDefault;
@@ -102,9 +111,11 @@ public class PlayerDodge : MonoBehaviour
             if (Physics.Raycast(gameObject.transform.position, gameObject.transform.forward, out hit, raycastRange))
             {
                 Debug.Log(hit.distance);
-                gameObject.GetComponent<playerMovement>();
+                
 
-          
+                PlayerMovement.baseMaxSpeed = PlayerMovement.baseMaxSpeed + (10 - (hit.distance / 5));
+                PlayerMovement.maxSpeed = PlayerMovement.maxSpeed + (20 - ((hit.distance * 2) / 5));
+
             }
 
         }

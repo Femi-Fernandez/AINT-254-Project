@@ -7,7 +7,7 @@ public class playerMovement : MonoBehaviour
     // Start is called before the first frame update
 
     Rigidbody rb;
-    public float horizontalSpeed = 8.0f;
+    public float horizontalSpeed = 12.0f;
 
     float forwardSpeed;
     public float boostForwardSpeed = 40.0f;
@@ -17,7 +17,7 @@ public class playerMovement : MonoBehaviour
     float speed;
     public float maxSpeed = 200.0f;
     public float baseMaxSpeed = 100.0f;
-    public float current;
+    public float currentSpeed;
 
     void Start()
     {
@@ -25,14 +25,14 @@ public class playerMovement : MonoBehaviour
         rb.freezeRotation = true;
 
         //set acceleration and max speed to default values
-        speed = baseMaxSpeed;
+        //speed = baseMaxSpeed;
         forwardSpeed = baseForwardSpeed;
     }
      
     // Update is called once per frame
     void Update()
     {
-        current = rb.velocity.magnitude;
+        currentSpeed = rb.velocity.magnitude;
         movePlayer();
     }
 
