@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class playerMovement : MonoBehaviour
 {
@@ -19,10 +20,14 @@ public class playerMovement : MonoBehaviour
     public float baseMaxSpeed = 100.0f;
     public float currentSpeed;
 
+    public Text speedtext;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
+
+        //speedtext = this.GetComponent<Text>();
 
         //set acceleration and max speed to default values
         //speed = baseMaxSpeed;
@@ -34,6 +39,7 @@ public class playerMovement : MonoBehaviour
     {
         currentSpeed = rb.velocity.magnitude;
         movePlayer();
+        speedtext.text = "Current speed: " + currentSpeed.ToString();
     }
 
     void movePlayer()

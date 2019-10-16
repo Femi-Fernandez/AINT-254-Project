@@ -17,9 +17,7 @@ public class PlayerDodge : MonoBehaviour
     bool canBoost = true;
 
     float raycastRange = 50f;
-
-    public float zSpeed;
-    //public float forwardSpeed;
+    public float dodgeDistance = 150f;
 
     private playerMovement PlayerMovement;
     // Start is called before the first frame update
@@ -64,6 +62,8 @@ public class PlayerDodge : MonoBehaviour
                 canBoost = true;
             }
         }
+
+        
     }
 
 
@@ -75,7 +75,9 @@ public class PlayerDodge : MonoBehaviour
         boostTimer = boostTimerDefault;
 
         dodgeTime -= Time.deltaTime;
-        transform.Translate(new Vector3(1, 0, 0));
+
+        rb.transform.position += (transform.right * dodgeDistance) *Time.deltaTime;
+        //transform.Translate(new Vector3(1, 0, 0));
 
         if (dodgeTime <= 0)
         {
@@ -93,7 +95,9 @@ public class PlayerDodge : MonoBehaviour
         boostTimer = boostTimerDefault;
 
         dodgeTime -= Time.deltaTime;
-        transform.Translate(new Vector3(-1, 0, 0));
+        //transform.Translate(new Vector3(-1, 0, 0));
+        rb.transform.position += (-transform.right * dodgeDistance) * Time.deltaTime;
+
         if (dodgeTime <= 0)
         {
             dodgeDelay = dodgeDelayDefault;
