@@ -6,14 +6,14 @@ public class PlayerDodge : MonoBehaviour
 {
     Rigidbody rb;
     float dodgeDelay;
-    float dodgeDelayDefault = 1.0f;
+    float dodgeDelayDefault = .5f;
 
     float dodgeTime;
     float dodgeTimeDefault = 0.1f;
     bool canDodge = true;
 
     public float boostTimer;
-    float boostTimerDefault = 1.0f;
+    float boostTimerDefault = .5f;
     bool canBoost = true;
 
     float raycastRange = 50f;
@@ -58,7 +58,7 @@ public class PlayerDodge : MonoBehaviour
             boostTimer -= Time.deltaTime;
             if (boostTimer < 0)
             {
-                boostTimer = 1.1f;
+                boostTimer = .6f;
                 canBoost = true;
             }
         }

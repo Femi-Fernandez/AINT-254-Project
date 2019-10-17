@@ -21,6 +21,8 @@ public class playerMovement : MonoBehaviour
     public float currentSpeed;
 
     public Text speedtext;
+    public Text maxSpeedtext;
+
 
     void Start()
     {
@@ -40,6 +42,8 @@ public class playerMovement : MonoBehaviour
         currentSpeed = rb.velocity.magnitude;
         movePlayer();
         speedtext.text = "Current speed: " + Mathf.RoundToInt(currentSpeed);
+        maxSpeedtext.text = "Max speed: " + Mathf.RoundToInt(baseMaxSpeed);
+
     }
 
     void movePlayer()
@@ -63,7 +67,7 @@ public class playerMovement : MonoBehaviour
 
             if (Input.GetKey(KeyCode.UpArrow))
             {
-                Debug.Log("here");
+                //Debug.Log("here");
                 //rb.AddForce(transform.forward * forwardSpeed, ForceMode.Acceleration);
                 rb.AddForce(transform.forward* forwardSpeed, ForceMode.Acceleration);
             }
