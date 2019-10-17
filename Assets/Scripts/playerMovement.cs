@@ -39,7 +39,7 @@ public class playerMovement : MonoBehaviour
     {
         currentSpeed = rb.velocity.magnitude;
         movePlayer();
-        speedtext.text = "Current speed: " + currentSpeed.ToString();
+        speedtext.text = "Current speed: " + Mathf.RoundToInt(currentSpeed);
     }
 
     void movePlayer()
@@ -67,6 +67,13 @@ public class playerMovement : MonoBehaviour
                 //rb.AddForce(transform.forward * forwardSpeed, ForceMode.Acceleration);
                 rb.AddForce(transform.forward* forwardSpeed, ForceMode.Acceleration);
             }
+        }
+
+        if (Input.GetKey(KeyCode.DownArrow))
+        {
+            Debug.Log("here");
+            //rb.AddForce(transform.forward * forwardSpeed, ForceMode.Acceleration);
+            rb.AddForce(-transform.forward * forwardSpeed, ForceMode.Acceleration);
         }
 
         //left and right doesnt use forces as it needs to feel snappy
