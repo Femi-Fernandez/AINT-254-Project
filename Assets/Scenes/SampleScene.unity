@@ -810,7 +810,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2d9cddc76c7dbd4f8d04f32720d4562, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerMovement: {fileID: 0}
 --- !u!1 &455167677
 GameObject:
   m_ObjectHideFlags: 0
@@ -3995,8 +3994,8 @@ MonoBehaviour:
   horizontalSpeed: 8
   boostForwardSpeed: 80
   baseForwardSpeed: 40
-  maxSpeed: 200
-  baseMaxSpeed: 100
+  maxSpeed: 100
+  baseMaxSpeed: 50
   currentSpeed: 0
   speedtext: {fileID: 1403056250}
 --- !u!65 &2001438426
@@ -4102,7 +4101,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boostTimer: 0
-  dodgeDistance: 150
+  dodgeDistance: 10
 --- !u!114 &2001438432
 MonoBehaviour:
   m_ObjectHideFlags: 0

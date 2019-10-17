@@ -63,7 +63,9 @@ public class playerMovement : MonoBehaviour
 
             if (Input.GetKey(KeyCode.UpArrow))
             {
-                rb.AddForce(transform.forward * forwardSpeed, ForceMode.Acceleration);
+                Debug.Log("here");
+                //rb.AddForce(transform.forward * forwardSpeed, ForceMode.Acceleration);
+                rb.AddForce(transform.forward* forwardSpeed, ForceMode.Acceleration);
             }
         }
 
