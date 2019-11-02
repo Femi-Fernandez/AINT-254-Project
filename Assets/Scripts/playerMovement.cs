@@ -42,7 +42,7 @@ public class playerMovement : MonoBehaviour
         currentSpeed = rb.velocity.magnitude;
         movePlayer();
         speedtext.text = "Current speed: " + Mathf.RoundToInt(currentSpeed);
-        maxSpeedtext.text = "Max speed: " + Mathf.RoundToInt(baseMaxSpeed);
+        //maxSpeedtext.text = "Max speed: " + Mathf.RoundToInt(baseMaxSpeed);
 
     }
 

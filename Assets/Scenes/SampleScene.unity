@@ -7701,6 +7701,7 @@ MonoBehaviour:
   baseMaxSpeed: 50
   currentSpeed: 0
   speedtext: {fileID: 1403056250}
+  maxSpeedtext: {fileID: 0}
 --- !u!65 &2001438426
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7806,6 +7807,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boostTimer: 0
   dodgeDistance: 100
+  curve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.095458984
+      value: 1.0022526
+      inSlope: 34.181553
+      outSlope: 34.181553
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.06375489
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!114 &2001438432
 MonoBehaviour:
   m_ObjectHideFlags: 0

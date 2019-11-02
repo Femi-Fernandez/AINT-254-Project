@@ -8,8 +8,8 @@ public class PlayerDodge : MonoBehaviour
     float dodgeDelay;
     float dodgeDelayDefault = .5f;
 
-    float dodgeTime;
-    float dodgeTimeDefault = 0.1f;
+    public float dodgeTime;
+    float dodgeTimeDefault = .1f;
     bool canDodge = true;
 
     public float boostTimer;
@@ -19,23 +19,40 @@ public class PlayerDodge : MonoBehaviour
     float raycastRange = 50f;
     public float dodgeDistance = 150f;
 
+    Vector3 startPos;
+    Vector3 endPosRight;
+    Vector3 endPosLeft;
+    float distance = 1f;
+
+    float lerpTime = 0.1f;
+    float currentLerpTime;
+    float perc;
+    
     private playerMovement PlayerMovement;
+    private PlayerScore playerScore;
+
+
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         PlayerMovement = gameObject.GetComponent<playerMovement>();
+        playerScore = gameObject.GetComponent<PlayerScore>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        startPos = transform.position;
+        endPosRight = transform.position + Vector3.right * distance;
+        endPosLeft = transform.position + Vector3.right * -distance;
+
         if (canDodge == true)
         {
             if (Input.GetKey(KeyCode.RightArrow) && Input.GetKey(KeyCode.Space))
             {
                 dodgeRight();
-                
+                canDodge = false;
             }
             if (Input.GetKey(KeyCode.LeftArrow) && Input.GetKey(KeyCode.Space))
             {
@@ -74,16 +91,15 @@ public class PlayerDodge : MonoBehaviour
         canBoost = false;
         boostTimer = boostTimerDefault;
 
-        dodgeTime -= Time.deltaTime;
+        dodgeTime += Time.deltaTime;
+        perc = dodgeTime / lerpTime;
 
-        rb.transform.position += (transform.right * dodgeDistance) *Time.deltaTime;
-        //transform.Translate(new Vector3(1, 0, 0));
-
-        if (dodgeTime <= 0)
+        rb.transform.position = Vector3.Lerp(startPos, endPosRight, perc);
+       
+        if (dodgeTime >= dodgeTimeDefault)
         {
             dodgeDelay = dodgeDelayDefault;
-            dodgeTime = dodgeTimeDefault;
-            canDodge = false;     
+            dodgeTime = 0;
         }
         
     }
@@ -94,14 +110,15 @@ public class PlayerDodge : MonoBehaviour
         canBoost = false;
         boostTimer = boostTimerDefault;
 
-        dodgeTime -= Time.deltaTime;
-        //transform.Translate(new Vector3(-1, 0, 0));
-        rb.transform.position += (-transform.right * dodgeDistance) * Time.deltaTime;
+        dodgeTime += Time.deltaTime;
+        perc = dodgeTime / lerpTime;
 
-        if (dodgeTime <= 0)
+        rb.transform.position = Vector3.Lerp(startPos, endPosLeft, perc);
+
+        if (dodgeTime >= dodgeTimeDefault)
         {
             dodgeDelay = dodgeDelayDefault;
-            dodgeTime = dodgeTimeDefault;
+            dodgeTime = 0;
             canDodge = false;
         }
         
@@ -114,8 +131,9 @@ public class PlayerDodge : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(gameObject.transform.position, gameObject.transform.forward, out hit, raycastRange))
             {
-                Debug.Log(hit.distance);
-                
+                //Debug.Log(hit.distance);
+
+                playerScore.ScoreCalculate(hit.distance);
 
                 PlayerMovement.baseMaxSpeed = PlayerMovement.baseMaxSpeed + (10 - (hit.distance / 5));
                 PlayerMovement.maxSpeed = PlayerMovement.maxSpeed + (20 - ((hit.distance * 2) / 5));
