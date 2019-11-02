@@ -27,7 +27,7 @@ public class PlayerDodge : MonoBehaviour
     float lerpTime = 0.1f;
     float currentLerpTime;
     float perc;
-    
+
     private playerMovement PlayerMovement;
     private PlayerScore playerScore;
 
@@ -56,10 +56,10 @@ public class PlayerDodge : MonoBehaviour
             }
             if (Input.GetKey(KeyCode.LeftArrow) && Input.GetKey(KeyCode.Space))
             {
-               dodgeLeft();
+                dodgeLeft();
             }
         }
-        
+
         if (canDodge == false)
         {
             dodgeDelay -= Time.deltaTime;
@@ -80,13 +80,13 @@ public class PlayerDodge : MonoBehaviour
             }
         }
 
-        
+
     }
 
 
     void dodgeRight()
     {
-        
+
         boostCheck();
         canBoost = false;
         boostTimer = boostTimerDefault;
@@ -95,13 +95,13 @@ public class PlayerDodge : MonoBehaviour
         perc = dodgeTime / lerpTime;
 
         rb.transform.position = Vector3.Lerp(startPos, endPosRight, perc);
-       
+
         if (dodgeTime >= dodgeTimeDefault)
         {
             dodgeDelay = dodgeDelayDefault;
             dodgeTime = 0;
         }
-        
+
     }
 
     void dodgeLeft()
@@ -121,7 +121,7 @@ public class PlayerDodge : MonoBehaviour
             dodgeTime = 0;
             canDodge = false;
         }
-        
+
     }
 
     void boostCheck()
