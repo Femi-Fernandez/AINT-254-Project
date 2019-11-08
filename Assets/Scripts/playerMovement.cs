@@ -21,6 +21,7 @@ public class playerMovement : MonoBehaviour
     public float currentSpeed;
 
     public Text speedtext;
+    public GameObject jetBoost;
     //public Text maxSpeedtext;
 
 
@@ -53,12 +54,14 @@ public class playerMovement : MonoBehaviour
         {
             speed = maxSpeed;
             forwardSpeed = boostForwardSpeed;
+            jetBoost.SetActive(true);
         }
         else
         {
             //when boost is released, reset to base values.
             speed = baseMaxSpeed;
             forwardSpeed = baseForwardSpeed;
+            jetBoost.SetActive(false);
         }
 
         //if speed is less than max speed allow acceleration
