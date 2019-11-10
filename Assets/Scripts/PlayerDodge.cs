@@ -31,13 +31,17 @@ public class PlayerDodge : MonoBehaviour
     private playerMovement PlayerMovement;
     private PlayerScore playerScore;
 
+    private PlayerDodgeRender dodgeRender;
+    public Transform rayStart;
 
     // Start is called before the first frame update
     void Start()
     {
+
         rb = GetComponent<Rigidbody>();
         PlayerMovement = gameObject.GetComponent<playerMovement>();
         playerScore = gameObject.GetComponent<PlayerScore>();
+        dodgeRender = gameObject.GetComponent<PlayerDodgeRender>();
     }
 
     // Update is called once per frame
@@ -83,7 +87,6 @@ public class PlayerDodge : MonoBehaviour
 
     }
 
-
     void dodgeRight()
     {
 
@@ -128,13 +131,16 @@ public class PlayerDodge : MonoBehaviour
     {
         if (canBoost == true)
         {
-            RaycastHit hit;
+            RaycastHit hit;         
+
             if (Physics.Raycast(gameObject.transform.position, gameObject.transform.forward, out hit, raycastRange))
             {
                 //Debug.Log(hit.distance);
+                
+                dodgeRender.DodgeRender(hit, rayStart.position);
 
                 playerScore.ScoreCalculate(hit.distance);
-
+                
                 PlayerMovement.baseMaxSpeed = PlayerMovement.baseMaxSpeed + (10 - (hit.distance / 5));
                 PlayerMovement.maxSpeed = PlayerMovement.maxSpeed + (20 - ((hit.distance * 2) / 5));
 
@@ -143,5 +149,6 @@ public class PlayerDodge : MonoBehaviour
         }
 
     }
+
 
 }
