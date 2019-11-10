@@ -86,17 +86,25 @@ public class playerMovement : MonoBehaviour
         //left and right doesnt use forces as it needs to feel snappy
         if (Input.GetKey(KeyCode.RightArrow))
         {
-            float speed = horizontalSpeed;
-            //if (Input.GetKeyDown(KeyCode.Space))
-            //{
-            //    speed = horizontalSpeed * 30;
-            //}
-            transform.position += (transform.right * speed) * Time.deltaTime;
+            //float speed = horizontalSpeed;
+
+            //transform.position += (transform.right * speed) * Time.deltaTime;
+            rb.AddForce(transform.right * horizontalSpeed, ForceMode.Acceleration);
+        }
+        if (Input.GetKeyUp(KeyCode.RightArrow))
+        {
+            rb.velocity = new Vector3(0, rb.velocity.y, rb.velocity.z);
+
         }
 
         if (Input.GetKey(KeyCode.LeftArrow))
         {
-            transform.position += (-transform.right * horizontalSpeed) * Time.deltaTime;
+            //transform.position += (-transform.right * horizontalSpeed) * Time.deltaTime;
+            rb.AddForce(-transform.right * horizontalSpeed, ForceMode.Acceleration);
+        }
+        if (Input.GetKeyUp(KeyCode.LeftArrow))
+        {
+            rb.velocity = new Vector3(0, rb.velocity.y, rb.velocity.z);
 
         }
 
