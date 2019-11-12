@@ -2,16 +2,33 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
+    public Text winText;
+    public Text finalScore;
+    private PlayerScore playerScore;
+
+    void Start() {
+        winText.gameObject.SetActive(false);
+        finalScore.gameObject.SetActive(false);
+        playerScore = gameObject.GetComponent<PlayerScore>();
+    }
+
     private void OnCollisionEnter(Collision col)
     {
         if (col.gameObject.tag == "spike")
         {
             Destroy(gameObject);
             RestartScene();
+        }
+        if (col.gameObject.tag == "goal")
+        {
+            winText.gameObject.SetActive(true);
+            finalScore.gameObject.SetActive(true);
+
+            finalScore.text = "final Score: " + playerScore.totalScore;
         }
     }
 
