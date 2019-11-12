@@ -91,22 +91,16 @@ public class playerMovement : MonoBehaviour
             //transform.position += (transform.right * speed) * Time.deltaTime;
             rb.AddForce(transform.right * horizontalSpeed, ForceMode.Acceleration);
         }
-        if (Input.GetKeyUp(KeyCode.RightArrow))
-        {
-            rb.velocity = new Vector3(0, rb.velocity.y, rb.velocity.z);
-
-        }
 
         if (Input.GetKey(KeyCode.LeftArrow))
         {
             //transform.position += (-transform.right * horizontalSpeed) * Time.deltaTime;
             rb.AddForce(-transform.right * horizontalSpeed, ForceMode.Acceleration);
         }
-        if (Input.GetKeyUp(KeyCode.LeftArrow))
+
+        if (!Input.GetKey(KeyCode.RightArrow) && !Input.GetKey(KeyCode.LeftArrow))
         {
-            rb.velocity = new Vector3(0, rb.velocity.y, rb.velocity.z);
-
+            rb.velocity = new Vector3(rb.velocity.x * .95f, rb.velocity.y, rb.velocity.z);
         }
-
     }
 }
