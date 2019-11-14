@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - spike
+  - PointPickup
+  - goal
   layers:
   - Default
   - TransparentFX
