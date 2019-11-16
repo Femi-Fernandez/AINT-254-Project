@@ -41,6 +41,9 @@ public class PlayerPause : MonoBehaviour
         inGameUI.SetActive(true);
         pauseScreenUI.SetActive(false);
         Time.timeScale = 1;
-
+    }
+    public void QuitGame()
+    {
+        SceneManager.LoadScene("Main_menu");
     }
 }
