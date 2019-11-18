@@ -12,19 +12,7 @@ public class ButtonManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        mainButtons.SetActive(true);
-        levelSelectButtons.SetActive(false);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
-    public void QuitGame()
-    {
-        Application.Quit();
+        mainMenu();
     }
 
     public void levelSelect()
@@ -32,13 +20,10 @@ public class ButtonManager : MonoBehaviour
         mainButtons.SetActive(false);
         levelSelectButtons.SetActive(true);
     }
-    public void StartGame()
+    
+    public void mainMenu()
     {
-        SceneManager.LoadScene("Level_1");
-    }
-
-    public void Level1()
-    {
-        SceneManager.LoadScene("Level_1");
+        mainButtons.SetActive(true);
+        levelSelectButtons.SetActive(false);
     }
 }
