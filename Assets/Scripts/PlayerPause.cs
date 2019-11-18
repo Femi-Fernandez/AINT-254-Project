@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
+//using UnityEngine.UI;
 
 public class PlayerPause : MonoBehaviour
 {
     public GameObject inGameUI;
     public GameObject pauseScreenUI;
 
-    private bool paused;
+    public bool paused;
 
     // Start is called before the first frame update
     void Start()

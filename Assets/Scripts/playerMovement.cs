@@ -5,8 +5,6 @@ using UnityEngine.UI;
 
 public class playerMovement : MonoBehaviour
 {
-    // Start is called before the first frame update
-
     Rigidbody rb;
     public float horizontalSpeed = 12.0f;
 
@@ -23,7 +21,7 @@ public class playerMovement : MonoBehaviour
     public Text speedtext;
     public GameObject jetBoost;
     //public Text maxSpeedtext;
-
+    private PlayerPause playerPause;
 
     void Start()
     {
@@ -32,16 +30,19 @@ public class playerMovement : MonoBehaviour
 
         //speedtext = this.GetComponent<Text>();
 
-        //set acceleration and max speed to default values
-        //speed = baseMaxSpeed;
         forwardSpeed = baseForwardSpeed;
+        playerPause = gameObject.GetComponent<PlayerPause>();
     }
      
     // Update is called once per frame
     void Update()
     {
         currentSpeed = rb.velocity.magnitude;
-        movePlayer();
+        if (playerPause.paused == false)
+        {
+            movePlayer();
+        }
+       // movePlayer();
         speedtext.text = "Current speed: " + Mathf.RoundToInt(currentSpeed);
         //maxSpeedtext.text = "Max speed: " + Mathf.RoundToInt(baseMaxSpeed);
 
@@ -70,31 +71,22 @@ public class playerMovement : MonoBehaviour
 
             if (Input.GetKey(KeyCode.UpArrow))
             {
-                //Debug.Log("here");
-                //rb.AddForce(transform.forward * forwardSpeed, ForceMode.Acceleration);
                 rb.AddForce(transform.forward* forwardSpeed, ForceMode.Acceleration);
             }
         }
 
         if (Input.GetKey(KeyCode.DownArrow))
         {
-            Debug.Log("here");
-            //rb.AddForce(transform.forward * forwardSpeed, ForceMode.Acceleration);
             rb.AddForce(-transform.forward * forwardSpeed, ForceMode.Acceleration);
         }
 
-        //left and right doesnt use forces as it needs to feel snappy
         if (Input.GetKey(KeyCode.RightArrow))
         {
-            //float speed = horizontalSpeed;
-
-            //transform.position += (transform.right * speed) * Time.deltaTime;
             rb.AddForce(transform.right * horizontalSpeed, ForceMode.Acceleration);
         }
 
         if (Input.GetKey(KeyCode.LeftArrow))
         {
-            //transform.position += (-transform.right * horizontalSpeed) * Time.deltaTime;
             rb.AddForce(-transform.right * horizontalSpeed, ForceMode.Acceleration);
         }
 

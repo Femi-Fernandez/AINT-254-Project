@@ -36,4 +36,9 @@ public class ButtonManager : MonoBehaviour
     {
         SceneManager.LoadScene("Level_1");
     }
+
+    public void Level1()
+    {
+        SceneManager.LoadScene("Level_1");
+    }
 }

@@ -8,11 +8,13 @@ public class PlayerHealth : MonoBehaviour
 {
     public Text winText;
     public Text finalScore;
+    public Button nextLevel;
     private PlayerScore playerScore;
 
     void Start() {
         winText.gameObject.SetActive(false);
         finalScore.gameObject.SetActive(false);
+        nextLevel.gameObject.SetActive(false);
         playerScore = gameObject.GetComponent<PlayerScore>();
     }
 
@@ -27,7 +29,7 @@ public class PlayerHealth : MonoBehaviour
         {
             winText.gameObject.SetActive(true);
             finalScore.gameObject.SetActive(true);
-
+            nextLevel.gameObject.SetActive(true);
             finalScore.text = "final Score: " + playerScore.totalScore;
         }
     }
