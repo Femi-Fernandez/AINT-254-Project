@@ -35,14 +35,13 @@ public class playerMovement : MonoBehaviour
     }
      
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         currentSpeed = rb.velocity.magnitude;
         if (playerPause.paused == false)
         {
             movePlayer();
         }
-       // movePlayer();
         speedtext.text = "Current speed: " + Mathf.RoundToInt(currentSpeed);
         //maxSpeedtext.text = "Max speed: " + Mathf.RoundToInt(baseMaxSpeed);
 

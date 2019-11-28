@@ -17,12 +17,12 @@ public class PlayerDodge : MonoBehaviour
     bool canBoost = true;
 
     float raycastRange = 50f;
-    public float dodgeDistance = 150f;
+    //public float dodgeDistance = 150f;
 
     Vector3 startPos;
     Vector3 endPosRight;
     Vector3 endPosLeft;
-    float distance = 1f;
+    public float distance = 1f;
 
     float lerpTime = 0.1f;
     float currentLerpTime;
@@ -45,7 +45,7 @@ public class PlayerDodge : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         startPos = transform.position;
         endPosRight = transform.position + Vector3.right * distance;
