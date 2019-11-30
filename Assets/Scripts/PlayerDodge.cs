@@ -53,12 +53,12 @@ public class PlayerDodge : MonoBehaviour
 
         if (canDodge == true)
         {
-            if (Input.GetKey(KeyCode.RightArrow) && Input.GetKey(KeyCode.Space))
+            if ((Input.GetKey(KeyCode.RightArrow) && Input.GetKey(KeyCode.Space)) || (Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.Space)))
             {
                 dodgeRight();
                 canDodge = false;
             }
-            if (Input.GetKey(KeyCode.LeftArrow) && Input.GetKey(KeyCode.Space))
+            if ((Input.GetKey(KeyCode.LeftArrow) && Input.GetKey(KeyCode.Space)) || (Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.Space)))
             {
                 dodgeLeft();
             }

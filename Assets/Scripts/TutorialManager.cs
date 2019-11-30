@@ -37,7 +37,7 @@ public class TutorialManager : MonoBehaviour
         {
             if (waitTime <= 0)
             {
-                if (Input.GetKey(KeyCode.UpArrow))
+                if (Input.GetKey(KeyCode.DownArrow))
                 {
                     waitTimeReset();
                     popUpCounter++;

@@ -383,6 +383,12 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 69226848}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &90658545 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5582330873368453146, guid: 5a9c9bf0d85deff44be82be3bfe74838,
+    type: 3}
+  m_PrefabInstance: {fileID: 6664395982343782514}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &100394495
 GameObject:
   m_ObjectHideFlags: 0
@@ -10017,11 +10023,11 @@ PrefabInstance:
       propertyPath: speedtext
       value: 
       objectReference: {fileID: 1403056250}
-    - target: {fileID: 6664395983204370093, guid: 5a9c9bf0d85deff44be82be3bfe74838,
+    - target: {fileID: 6664395983204370091, guid: 5a9c9bf0d85deff44be82be3bfe74838,
         type: 3}
-      propertyPath: dodgeDistance
-      value: 600
-      objectReference: {fileID: 0}
+      propertyPath: player_model
+      value: 
+      objectReference: {fileID: 90658545}
     - target: {fileID: 6664395983204370066, guid: 5a9c9bf0d85deff44be82be3bfe74838,
         type: 3}
       propertyPath: winText
@@ -10047,5 +10053,10 @@ PrefabInstance:
       propertyPath: pauseScreenUI
       value: 
       objectReference: {fileID: 1641136693}
+    - target: {fileID: 6664395983204370093, guid: 5a9c9bf0d85deff44be82be3bfe74838,
+        type: 3}
+      propertyPath: dodgeDistance
+      value: 600
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a9c9bf0d85deff44be82be3bfe74838, type: 3}
