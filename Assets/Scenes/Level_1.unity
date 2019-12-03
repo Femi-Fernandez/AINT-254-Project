@@ -3409,7 +3409,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -5}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &923326052
@@ -5908,7 +5908,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 3.7}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1448944535
@@ -7167,6 +7167,7 @@ GameObject:
   - component: {fileID: 1659782462}
   - component: {fileID: 1659782461}
   - component: {fileID: 1659782460}
+  - component: {fileID: 1659782463}
   m_Layer: 5
   m_Name: Continue button
   m_TagString: Untagged
@@ -7191,8 +7192,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 42}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 0, y: 35.36}
+  m_SizeDelta: {x: 160, y: 43.28}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1659782460
 MonoBehaviour:
@@ -7212,7 +7213,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 2
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -7222,10 +7223,11 @@ MonoBehaviour:
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
+    m_HighlightedSprite: {fileID: 21300000, guid: a4270a48bbee31745bb647564e88b39e,
+      type: 3}
+    m_PressedSprite: {fileID: 21300000, guid: ffe42489a9c14354e92d67171bc2845e, type: 3}
+    m_SelectedSprite: {fileID: 21300000, guid: a4270a48bbee31745bb647564e88b39e, type: 3}
+    m_DisabledSprite: {fileID: 21300000, guid: 327b25a3fdccf8b42bd6464a9289d18e, type: 3}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted
@@ -7270,7 +7272,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: 327b25a3fdccf8b42bd6464a9289d18e, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -7288,6 +7290,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1659782458}
   m_CullTransparentMesh: 0
+--- !u!114 &1659782463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1659782458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b7aa8649db5ef141a5dde6c0899d7dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skinData: {fileID: 11400000, guid: 8f2930d40e829c74cb034e77bbbefcf1, type: 2}
 --- !u!1 &1686268722
 GameObject:
   m_ObjectHideFlags: 0
@@ -7576,6 +7591,7 @@ GameObject:
   - component: {fileID: 1759798992}
   - component: {fileID: 1759798991}
   - component: {fileID: 1759798990}
+  - component: {fileID: 1759798993}
   m_Layer: 5
   m_Name: Exit button
   m_TagString: Untagged
@@ -7600,8 +7616,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -114}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 0, y: -120.18}
+  m_SizeDelta: {x: 160, y: 42.37}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1759798990
 MonoBehaviour:
@@ -7621,7 +7637,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 2
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -7631,10 +7647,11 @@ MonoBehaviour:
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
+    m_HighlightedSprite: {fileID: 21300000, guid: a4270a48bbee31745bb647564e88b39e,
+      type: 3}
+    m_PressedSprite: {fileID: 21300000, guid: ffe42489a9c14354e92d67171bc2845e, type: 3}
+    m_SelectedSprite: {fileID: 21300000, guid: a4270a48bbee31745bb647564e88b39e, type: 3}
+    m_DisabledSprite: {fileID: 21300000, guid: 327b25a3fdccf8b42bd6464a9289d18e, type: 3}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted
@@ -7679,7 +7696,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: 327b25a3fdccf8b42bd6464a9289d18e, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -7697,6 +7714,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1759798988}
   m_CullTransparentMesh: 0
+--- !u!114 &1759798993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1759798988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b7aa8649db5ef141a5dde6c0899d7dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skinData: {fileID: 11400000, guid: 8f2930d40e829c74cb034e77bbbefcf1, type: 2}
 --- !u!1 &1762318966
 GameObject:
   m_ObjectHideFlags: 0
@@ -10018,6 +10048,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6664395983204370070, guid: 5a9c9bf0d85deff44be82be3bfe74838,
+        type: 3}
+      propertyPath: inGameUI
+      value: 
+      objectReference: {fileID: 1997371905}
+    - target: {fileID: 6664395983204370070, guid: 5a9c9bf0d85deff44be82be3bfe74838,
+        type: 3}
+      propertyPath: pauseScreenUI
+      value: 
+      objectReference: {fileID: 1641136693}
     - target: {fileID: 6664395983204370091, guid: 5a9c9bf0d85deff44be82be3bfe74838,
         type: 3}
       propertyPath: speedtext
@@ -10043,16 +10083,6 @@ PrefabInstance:
       propertyPath: scoreText
       value: 
       objectReference: {fileID: 1462151606}
-    - target: {fileID: 6664395983204370070, guid: 5a9c9bf0d85deff44be82be3bfe74838,
-        type: 3}
-      propertyPath: inGameUI
-      value: 
-      objectReference: {fileID: 1997371905}
-    - target: {fileID: 6664395983204370070, guid: 5a9c9bf0d85deff44be82be3bfe74838,
-        type: 3}
-      propertyPath: pauseScreenUI
-      value: 
-      objectReference: {fileID: 1641136693}
     - target: {fileID: 6664395983204370093, guid: 5a9c9bf0d85deff44be82be3bfe74838,
         type: 3}
       propertyPath: dodgeDistance
