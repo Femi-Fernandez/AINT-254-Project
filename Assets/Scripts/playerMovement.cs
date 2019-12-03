@@ -18,11 +18,11 @@ public class playerMovement : MonoBehaviour
     public float baseMaxSpeed = 100.0f;
     public float currentSpeed;
 
-    float tiltTime;
+    public float tiltTime;
     float tiltDuration = .5f;
     float tiltResetDuration = 0.25f;
     float perc;
-
+    
     public Text speedtext;
     public GameObject jetBoost;
     public GameObject player_model;
@@ -84,41 +84,58 @@ public class playerMovement : MonoBehaviour
 
         if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
         {
-            
-            tiltTime += Time.deltaTime;
-            if (tiltTime >= tiltDuration)
-            {
-                tiltTime = tiltDuration;
-            }
-            perc = tiltTime / tiltDuration;
-            player_model.transform.rotation = Quaternion.Slerp(Quaternion.Euler(0, 0, 0), Quaternion.Euler(0, 0, -15), perc);
-            rb.AddForce(transform.right * horizontalSpeed, ForceMode.Acceleration);
-            
+            tiltRight();           
+            rb.AddForce(transform.right * horizontalSpeed, ForceMode.Acceleration);          
         }
 
         if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
         {
-            tiltTime += Time.deltaTime;
-            if (tiltTime > tiltDuration)
-            {
-                tiltTime = tiltDuration;
-            }
-            perc = tiltTime / tiltDuration;
-            player_model.transform.rotation = Quaternion.Slerp(Quaternion.Euler(0, 0, 0), Quaternion.Euler(0, 0, 15), perc);
+            tiltLeft();
             rb.AddForce(-transform.right * horizontalSpeed, ForceMode.Acceleration);
         }
 
         if (!Input.GetKey(KeyCode.RightArrow) && !Input.GetKey(KeyCode.LeftArrow) /*|| !Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.A) */)
         {
-            if (tiltTime < 0)
-            {
-                tiltTime  = 0;
-            }
-            tiltTime -= Time.deltaTime;
-            perc = tiltTime / tiltResetDuration; player_model.transform.rotation = Quaternion.Slerp(Quaternion.Euler(0, 0, 0), player_model.transform.rotation, perc);
-
-            rb.velocity = new Vector3(rb.velocity.x * .95f, rb.velocity.y, rb.velocity.z);
-            
+            tiltReset();   
+            rb.velocity = new Vector3(rb.velocity.x * .95f, rb.velocity.y, rb.velocity.z);            
         }
+    }
+
+    public void tiltLeft()
+    {
+        tiltTime += Time.deltaTime;
+        if (tiltTime > tiltDuration)
+        {
+            tiltTime = tiltDuration;
+        }
+        perc = tiltTime / tiltDuration;
+        player_model.transform.rotation = Quaternion.Slerp(player_model.transform.rotation, Quaternion.Euler(0, 0, 15), perc);       
+    }
+
+    public void tiltRight()
+    {
+        tiltTime -= Time.deltaTime;
+        if (tiltTime < -tiltDuration)
+        {
+            tiltTime = -tiltDuration;
+        }
+        perc = -(tiltTime / tiltDuration);
+        player_model.transform.rotation = Quaternion.Slerp(player_model.transform.rotation, Quaternion.Euler(0, 0, -15), perc);      
+    }
+
+    public void tiltReset()
+    {
+        if (tiltTime < 0)
+        {
+            tiltTime += Time.deltaTime;
+        }
+        if (tiltTime > 0)
+        {
+            tiltTime -= Time.deltaTime;
+        }
+        //tiltTime -= Time.deltaTime;
+        perc = tiltTime / tiltResetDuration;
+        player_model.transform.rotation = Quaternion.Slerp(Quaternion.Euler(0, 0, 0), player_model.transform.rotation, Mathf.Abs(perc));
+
     }
 }
