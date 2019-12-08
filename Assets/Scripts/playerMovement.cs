@@ -56,6 +56,7 @@ public class playerMovement : MonoBehaviour
 
     void movePlayer()
     {
+        player_model.transform.rotation = Quaternion.Euler(0.0f, 0.0f, rb.velocity.x * -2f);
         //when boost button is pressed, set speed and acceleration values to their boost values
         if (Input.GetKey(KeyCode.LeftShift))
         {
@@ -83,59 +84,19 @@ public class playerMovement : MonoBehaviour
         }
 
         if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
-        {
-            tiltRight();           
+        {         
             rb.AddForce(transform.right * horizontalSpeed, ForceMode.Acceleration);          
         }
 
         if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
         {
-            tiltLeft();
             rb.AddForce(-transform.right * horizontalSpeed, ForceMode.Acceleration);
         }
 
         if (!Input.GetKey(KeyCode.RightArrow) && !Input.GetKey(KeyCode.LeftArrow) /*|| !Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.A) */)
-        {
-            tiltReset();   
+        {            
             rb.velocity = new Vector3(rb.velocity.x * .95f, rb.velocity.y, rb.velocity.z);            
         }
     }
 
-    public void tiltLeft()
-    {
-        tiltTime += Time.deltaTime;
-        if (tiltTime > tiltDuration)
-        {
-            tiltTime = tiltDuration;
-        }
-        perc = tiltTime / tiltDuration;
-        player_model.transform.rotation = Quaternion.Slerp(player_model.transform.rotation, Quaternion.Euler(0, 0, 15), perc);       
-    }
-
-    public void tiltRight()
-    {
-        tiltTime -= Time.deltaTime;
-        if (tiltTime < -tiltDuration)
-        {
-            tiltTime = -tiltDuration;
-        }
-        perc = -(tiltTime / tiltDuration);
-        player_model.transform.rotation = Quaternion.Slerp(player_model.transform.rotation, Quaternion.Euler(0, 0, -15), perc);      
-    }
-
-    public void tiltReset()
-    {
-        if (tiltTime < 0)
-        {
-            tiltTime += Time.deltaTime;
-        }
-        if (tiltTime > 0)
-        {
-            tiltTime -= Time.deltaTime;
-        }
-        //tiltTime -= Time.deltaTime;
-        perc = tiltTime / tiltResetDuration;
-        player_model.transform.rotation = Quaternion.Slerp(Quaternion.Euler(0, 0, 0), player_model.transform.rotation, Mathf.Abs(perc));
-
-    }
 }
