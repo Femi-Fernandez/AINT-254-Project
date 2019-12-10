@@ -18,10 +18,10 @@ public class playerMovement : MonoBehaviour
     public float baseMaxSpeed = 100.0f;
     public float currentSpeed;
 
-    public float tiltTime;
-    float tiltDuration = .5f;
-    float tiltResetDuration = 0.25f;
-    float perc;
+    //public float tiltTime;
+    //float tiltDuration = .5f;
+    //float tiltResetDuration = 0.25f;
+    //float perc;
     
     public Text speedtext;
     public GameObject jetBoost;
