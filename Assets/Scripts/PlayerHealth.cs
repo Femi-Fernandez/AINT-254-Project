@@ -7,13 +7,14 @@ using UnityEngine.UI;
 public class PlayerHealth : MonoBehaviour
 {
     public Text winText;
-    public Text finalScore;
+    //public Text finalScore;
+    public GameObject finalScore;
     public Button nextLevel;
     private PlayerScore playerScore;
 
     void Start() {
         winText.gameObject.SetActive(false);
-        finalScore.gameObject.SetActive(false);
+        finalScore.SetActive(false);
         nextLevel.gameObject.SetActive(false);
         playerScore = gameObject.GetComponent<PlayerScore>();
     }
@@ -30,7 +31,7 @@ public class PlayerHealth : MonoBehaviour
             winText.gameObject.SetActive(true);
             finalScore.gameObject.SetActive(true);
             nextLevel.gameObject.SetActive(true);
-            finalScore.text = "final Score: " + playerScore.totalScore;
+            finalScore.GetComponent<Text>().text = "final score: " + playerScore.totalScore;
         }
     }
 

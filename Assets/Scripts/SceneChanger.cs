@@ -18,4 +18,8 @@ public class SceneChanger : MonoBehaviour
     {
         SceneManager.LoadScene("Level_1");
     }
+    public void LevelEndless()
+    {
+        SceneManager.LoadScene("Level_Endless");
+    }
 }
