@@ -24,7 +24,19 @@ public class PlayerHealth : MonoBehaviour
         if (col.gameObject.tag == "spike")
         {
             Destroy(gameObject);
-            RestartScene();
+            if (SceneManager.GetActiveScene().name =="Level_Endless")
+            {
+                winText.gameObject.SetActive(true);
+                finalScore.gameObject.SetActive(true);
+                nextLevel.gameObject.SetActive(true);
+                finalScore.GetComponent<Text>().text = "final score: " + playerScore.totalScore;
+            }
+            else
+            {
+                RestartScene();
+
+            }
+           
         }
         if (col.gameObject.tag == "goal")
         {

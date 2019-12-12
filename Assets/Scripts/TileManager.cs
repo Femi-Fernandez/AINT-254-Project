@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Collections.Generic;
 
 public class TileManager : MonoBehaviour
 {
@@ -31,11 +30,15 @@ public class TileManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (playerTransform.position.z - destroyBuffer> (spawnZ - numCurrentTiles* chunkLength))
+        if (playerTransform!= null)
         {
-            SpawnTile();
-            DeleteTile();
+            if (playerTransform.position.z - destroyBuffer > (spawnZ - numCurrentTiles * chunkLength))
+            {
+                SpawnTile();
+                DeleteTile();
+            }
         }
+
         
     }
     private void DeleteTile()
