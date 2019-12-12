@@ -11,12 +11,19 @@ public class PlayerHealth : MonoBehaviour
     public GameObject finalScore;
     public Button nextLevel;
     private PlayerScore playerScore;
+    public Text highScoreText;
 
     void Start() {
         winText.gameObject.SetActive(false);
         finalScore.SetActive(false);
-        nextLevel.gameObject.SetActive(false);
+        nextLevel.gameObject.SetActive(false);   
         playerScore = gameObject.GetComponent<PlayerScore>();
+        PlayerPrefs.SetInt("topScore", 0);
+
+        if (highScoreText != null)
+        {
+            highScoreText.gameObject.SetActive(false);
+        }
     }
 
     private void OnCollisionEnter(Collision col)
@@ -29,7 +36,21 @@ public class PlayerHealth : MonoBehaviour
                 winText.gameObject.SetActive(true);
                 finalScore.gameObject.SetActive(true);
                 nextLevel.gameObject.SetActive(true);
+                highScoreText.gameObject.SetActive(true);
                 finalScore.GetComponent<Text>().text = "final score: " + playerScore.totalScore;
+
+                if (highScoreText.gameObject != null)
+                {
+                    highScoreText.gameObject.SetActive(true);
+                }
+
+                var Highscore = PlayerPrefs.GetInt("Player Score");
+                if (Highscore < playerScore.totalScore)
+                {
+                    PlayerPrefs.SetInt("topScore", playerScore.totalScore);
+                    highScoreText.text = "Highest Score: " + playerScore.totalScore;
+                }
+                
             }
             else
             {
