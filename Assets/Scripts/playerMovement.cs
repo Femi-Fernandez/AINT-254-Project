@@ -13,7 +13,7 @@ public class playerMovement : MonoBehaviour
     public float baseForwardSpeed = 20.0f;
  
 
-    float speed;
+    public float speed;
     public float maxSpeed = 200.0f;
     public float baseMaxSpeed = 100.0f;
     public float currentSpeed;
@@ -78,17 +78,17 @@ public class playerMovement : MonoBehaviour
                 rb.AddForce(transform.forward* forwardSpeed, ForceMode.Acceleration);
         }
 
-        if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S))
+        if (Input.GetKey(KeyCode.DownArrow))
         {
             rb.AddForce(-transform.forward * forwardSpeed, ForceMode.Acceleration);
         }
 
-        if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.RightArrow))
         {         
             rb.AddForce(transform.right * horizontalSpeed, ForceMode.Acceleration);          
         }
 
-        if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.LeftArrow))
         {
             rb.AddForce(-transform.right * horizontalSpeed, ForceMode.Acceleration);
         }

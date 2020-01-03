@@ -30,34 +30,14 @@ public class PlayerHealth : MonoBehaviour
     {
         if (col.gameObject.tag == "spike")
         {
-            Destroy(gameObject);
-            if (SceneManager.GetActiveScene().name =="Level_Endless")
+            if (SceneManager.GetActiveScene().name == "Level_Endless")
             {
-                winText.gameObject.SetActive(true);
-                finalScore.gameObject.SetActive(true);
-                nextLevel.gameObject.SetActive(true);
-                highScoreText.gameObject.SetActive(true);
-                finalScore.GetComponent<Text>().text = "final score: " + playerScore.totalScore;
-
-                if (highScoreText.gameObject != null)
-                {
-                    highScoreText.gameObject.SetActive(true);
-                }
-
-                var Highscore = PlayerPrefs.GetInt("Player Score");
-                if (Highscore < playerScore.totalScore)
-                {
-                    PlayerPrefs.SetInt("topScore", playerScore.totalScore);
-                    highScoreText.text = "Highest Score: " + playerScore.totalScore;
-                }
-                
+                endlessDeath();
             }
             else
             {
-                RestartScene();
-
+                playerDeath();
             }
-           
         }
         if (col.gameObject.tag == "goal")
         {
@@ -73,4 +53,35 @@ public class PlayerHealth : MonoBehaviour
         Scene thisScene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(thisScene.name);
     }
+
+
+    public void playerDeath()
+    {
+        Destroy(gameObject);
+
+        RestartScene();
+    }
+
+    public void endlessDeath()
+    {
+        Destroy(gameObject);
+        winText.gameObject.SetActive(true);
+        finalScore.gameObject.SetActive(true);
+        nextLevel.gameObject.SetActive(true);
+        highScoreText.gameObject.SetActive(true);
+        finalScore.GetComponent<Text>().text = "final score: " + playerScore.totalScore;
+
+        if (highScoreText.gameObject != null)
+        {
+            highScoreText.gameObject.SetActive(true);
+        }
+
+        var Highscore = PlayerPrefs.GetInt("Player Score");
+        if (Highscore < playerScore.totalScore)
+        {
+            PlayerPrefs.SetInt("topScore", playerScore.totalScore);
+            highScoreText.text = "Highest Score: " + playerScore.totalScore;
+        }
+    }
+
 }
