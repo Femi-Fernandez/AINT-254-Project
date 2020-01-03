@@ -17,7 +17,7 @@ public class TutorialManager : MonoBehaviour
 
     public void waitTimeReset()
     {
-        waitTime = 3f;
+        waitTime = 2f;
     }
     // Update is called once per frame
     void Update()
@@ -37,6 +37,7 @@ public class TutorialManager : MonoBehaviour
         {
             if (waitTime <= 0)
             {
+                Time.timeScale = 0;
                 if (Input.GetKey(KeyCode.DownArrow))
                 {
                     waitTimeReset();
@@ -46,12 +47,14 @@ public class TutorialManager : MonoBehaviour
             else
             {
                 waitTime -= Time.deltaTime;
+                Time.timeScale = 1;
             }
         }
         else if (popUpCounter == 1)
         {
             if (waitTime <= 0)
             {
+                Time.timeScale = 0;
                 if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.LeftArrow))
                 {
                     waitTimeReset();
@@ -61,10 +64,12 @@ public class TutorialManager : MonoBehaviour
             else
             {
                 waitTime -= Time.deltaTime;
+                Time.timeScale = 1;
             }
         }
         else if (popUpCounter == 2)
         {
+            Time.timeScale = 0;
             if (waitTime <= 0)
             {
                 waitTimeReset();
@@ -73,12 +78,15 @@ public class TutorialManager : MonoBehaviour
             else
             {
                 waitTime -= Time.deltaTime;
+                Time.timeScale = 1;
             }
         }
         else if (popUpCounter == 3)
         {
+
             if (waitTime <= 0)
             {
+                Time.timeScale = 0;
                 if (Input.GetKey(KeyCode.LeftShift))
                 {
                     waitTimeReset();
@@ -88,27 +96,31 @@ public class TutorialManager : MonoBehaviour
             else
             {
                 waitTime -= Time.deltaTime;
+                Time.timeScale = 1;
             }
         }
         else if (popUpCounter == 4)
         {
             if (waitTime <= 0)
             {
+                Time.timeScale = 0;
                 if (Input.GetKey(KeyCode.Space))
                 {
-                    waitTimeReset();
+                    waitTime = 5.0f;
                     popUpCounter++;
                 }
             }
             else
             {
                 waitTime -= Time.deltaTime;
+                Time.timeScale = 1;
             }
         }
         else if (popUpCounter == 5)
         {
             if (waitTime <= 0)
             {
+                
                 if (Input.GetKey(KeyCode.Space))
                 {
                     waitTimeReset();
@@ -118,6 +130,7 @@ public class TutorialManager : MonoBehaviour
             else
             {
                 waitTime -= Time.deltaTime;
+                Time.timeScale = 1;
             }
         }
 
