@@ -10,7 +10,7 @@ public class TileManager : MonoBehaviour
 
     private Transform playerTransform;
     private float spawnZ = 0.0f;
-    private float chunkLength = 302.91f;
+    private float chunkLength = 300.0f;
     private float destroyBuffer = 332f;
     private int numCurrentTiles = 7;
     // Start is called before the first frame update
