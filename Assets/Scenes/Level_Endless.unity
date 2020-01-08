@@ -652,6 +652,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: vaporwave mountains old
       objectReference: {fileID: 0}
+    - target: {fileID: 483327361573784384, guid: 5d4e80fe32c0de64ca37a8227c34d1ae,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3525833023906117971, guid: 5d4e80fe32c0de64ca37a8227c34d1ae,
         type: 3}
       propertyPath: m_LocalPosition.x
