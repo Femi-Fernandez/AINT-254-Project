@@ -19,10 +19,12 @@ public class cameraMovement : MonoBehaviour
     {
         if (target != null)
         {
+           
             Vector3 desiredPosition = target.position + offset;
-            Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed);
-            transform.position = smoothedPosition;
-            transform.LookAt(target);
+
+                transform.position = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed);
+
+
             //Vector3 desiredPosition = objectToFollow.transform.position + offset;
             //transform.position = desiredPosition;
         }

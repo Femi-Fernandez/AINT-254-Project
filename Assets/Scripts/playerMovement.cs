@@ -13,7 +13,7 @@ public class playerMovement : MonoBehaviour
     public float baseForwardSpeed = 20.0f;
  
 
-    public float speed;
+    float speed;
     public float maxSpeed = 200.0f;
     public float baseMaxSpeed = 100.0f;
     public float currentSpeed;
@@ -29,6 +29,8 @@ public class playerMovement : MonoBehaviour
     //public Text maxSpeedtext;
     private PlayerPause playerPause;
 
+    public bool oldOrNew;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -39,6 +41,9 @@ public class playerMovement : MonoBehaviour
 
         forwardSpeed = baseForwardSpeed;
         playerPause = gameObject.GetComponent<PlayerPause>();
+        speed = maxSpeed;
+        forwardSpeed = boostForwardSpeed;
+        jetBoost.SetActive(true);
     }
      
     // Update is called once per frame
@@ -56,28 +61,36 @@ public class playerMovement : MonoBehaviour
 
     void movePlayer()
     {
-        player_model.transform.rotation = Quaternion.Euler(0.0f, 0.0f, rb.velocity.x * -2f);
+        //
+
+        if (!oldOrNew)
+        {
+            player_model.transform.rotation = Quaternion.Euler(0.0f, 0.0f, rb.velocity.x * -2f);
+        }
         //when boost button is pressed, set speed and acceleration values to their boost values
-        if (Input.GetKey(KeyCode.LeftShift))
-        {
-            speed = maxSpeed;
-            forwardSpeed = boostForwardSpeed;
-            jetBoost.SetActive(true);
-        }
-        else
-        {
-            //when boost is released, reset to base values.
-            speed = baseMaxSpeed;
-            forwardSpeed = baseForwardSpeed;
-            jetBoost.SetActive(false);
-        }
+       // if (Input.GetKey(KeyCode.LeftShift))
+       // {
+            //speed = maxSpeed;
+            //forwardSpeed = boostForwardSpeed;
+            //jetBoost.SetActive(true);
+        //}
+        //else
+        //{
+        //    //when boost is released, reset to base values.
+        //    speed = baseMaxSpeed;
+        //    forwardSpeed = baseForwardSpeed;
+        //    jetBoost.SetActive(false);
+        //}
 
         //if speed is less than max speed allow acceleration
+
+        
         if (rb.velocity.magnitude < speed)
         {
                 rb.AddForce(transform.forward* forwardSpeed, ForceMode.Acceleration);
         }
 
+   
         if (Input.GetKey(KeyCode.DownArrow))
         {
             rb.AddForce(-transform.forward * forwardSpeed, ForceMode.Acceleration);
@@ -85,17 +98,36 @@ public class playerMovement : MonoBehaviour
 
         if (Input.GetKey(KeyCode.RightArrow))
         {         
-            rb.AddForce(transform.right * horizontalSpeed, ForceMode.Acceleration);          
+            rb.AddForce(transform.right * horizontalSpeed, ForceMode.Acceleration);
+
+            //player_model.transform.rotation = Quaternion.Euler(0.0f, 0.0f, -30);
+           // player_model.transform.rotation = Quaternion.Lerp(player_model.transform.rotation, Quaternion.Euler(0.0f, 0.0f, -30), Time.deltaTime*10);
+            if (oldOrNew)
+            {
+                player_model.transform.rotation = Quaternion.Lerp(player_model.transform.rotation, Quaternion.Euler(0.0f, 0.0f, -30), Time.deltaTime * 10);
+            }
         }
 
         if (Input.GetKey(KeyCode.LeftArrow))
         {
             rb.AddForce(-transform.right * horizontalSpeed, ForceMode.Acceleration);
+            //player_model.transform.rotation = Quaternion.Euler(0.0f, 0.0f, 30);
+            //player_model.transform.rotation = Quaternion.Lerp(player_model.transform.rotation, Quaternion.Euler(0.0f, 0.0f, 30), Time.deltaTime * 10);
+            if (oldOrNew)
+            {
+                player_model.transform.rotation = Quaternion.Lerp(player_model.transform.rotation, Quaternion.Euler(0.0f, 0.0f, 30), Time.deltaTime * 10);
+            }
         }
 
         if (!Input.GetKey(KeyCode.RightArrow) && !Input.GetKey(KeyCode.LeftArrow) /*|| !Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.A) */)
         {            
-            rb.velocity = new Vector3(rb.velocity.x * .95f, rb.velocity.y, rb.velocity.z);            
+            rb.velocity = new Vector3(rb.velocity.x * .95f, rb.velocity.y, rb.velocity.z);
+            //player_model.transform.rotation = Quaternion.Euler(0.0f, 0.0f, 0);
+            if (oldOrNew)
+            {
+                player_model.transform.rotation = Quaternion.Lerp(player_model.transform.rotation, Quaternion.Euler(0.0f, 0.0f, 0), Time.deltaTime * 10);
+            }
+           // player_model.transform.rotation = Quaternion.Lerp(player_model.transform.rotation, Quaternion.Euler(0.0f, 0.0f, 0), Time.deltaTime * 10);
         }
     }
 

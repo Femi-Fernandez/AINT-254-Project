@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+
 using UnityEngine;
 
 public class PlayerDodge : MonoBehaviour
@@ -8,8 +9,8 @@ public class PlayerDodge : MonoBehaviour
     float dodgeDelay;
     float dodgeDelayDefault = .5f;
 
-    public float dodgeTime;
-    float dodgeTimeDefault = .1f;
+     float dodgeTime;
+    public float dodgeTimeDefault = .1f;
     bool canDodge = true;
 
     public float boostTimer;
@@ -24,43 +25,50 @@ public class PlayerDodge : MonoBehaviour
     Vector3 endPosLeft;
     public float distance = 1f;
 
-    float lerpTime = 0.1f;
-    float currentLerpTime;
     float perc;
 
-    private playerMovement PlayerMovement;
+    private playerMovement playerMovement;
     private PlayerScore playerScore;
 
     private PlayerDodgeRender dodgeRender;
     public Transform rayStart;
+
+    public timeManager TimeManager;
 
     // Start is called before the first frame update
     void Start()
     {
 
         rb = GetComponent<Rigidbody>();
-        PlayerMovement = gameObject.GetComponent<playerMovement>();
+        playerMovement = gameObject.GetComponent<playerMovement>();
         playerScore = gameObject.GetComponent<PlayerScore>();
         dodgeRender = gameObject.GetComponent<PlayerDodgeRender>();
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         startPos = transform.position;
-        endPosRight = transform.position + Vector3.right * distance;
-        endPosLeft = transform.position + Vector3.right * -distance;
+        //endPosRight = transform.position + Vector3.right * distance;
+        endPosRight = new Vector3(transform.position.x + 10, transform.position.y, transform.position.z);
+        //endPosLeft = transform.position + Vector3.right * -distance;
+        endPosLeft = new Vector3(transform.position.x - 10, transform.position.y, transform.position.z);
 
         if (canDodge == true)
         {
-            if ((Input.GetKey(KeyCode.RightArrow) && Input.GetKey(KeyCode.Space)) || (Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.Space)))
+            if ((Input.GetKey(KeyCode.RightArrow) && Input.GetKeyDown(KeyCode.Space)) || (Input.GetKey(KeyCode.D) && Input.GetKeyDown(KeyCode.Space)))
             {
-                dodgeRight();
+                //dodgeRight();
+
+                StartCoroutine(Dodge(startPos, endPosRight));
+                
                 canDodge = false;
             }
-            if ((Input.GetKey(KeyCode.LeftArrow) && Input.GetKey(KeyCode.Space)) || (Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.Space)))
+            if ((Input.GetKey(KeyCode.LeftArrow) && Input.GetKeyDown(KeyCode.Space)) || (Input.GetKey(KeyCode.A) && Input.GetKeyDown(KeyCode.Space)))
             {
-                dodgeLeft();
+                //dodgeLeft();
+                StartCoroutine(Dodge(startPos, endPosLeft));
+                canDodge = false;
             }
         }
 
@@ -76,7 +84,7 @@ public class PlayerDodge : MonoBehaviour
 
         if (canBoost == false)
         {
-            boostTimer -= Time.deltaTime;
+            boostTimer -= Time.unscaledDeltaTime;
             if (boostTimer < 0)
             {
                 boostTimer = .6f;
@@ -87,46 +95,70 @@ public class PlayerDodge : MonoBehaviour
 
     }
 
-    void dodgeRight()
-    {
-
-        boostCheck();
-        canBoost = false;
-        boostTimer = boostTimerDefault;
-
-        dodgeTime += Time.deltaTime;
-        perc = dodgeTime / lerpTime;
-
-        rb.transform.position = Vector3.Lerp(startPos, endPosRight, perc);
-
-        if (dodgeTime >= dodgeTimeDefault)
-        {
-            dodgeDelay = dodgeDelayDefault;
-            dodgeTime = 0;
-        }
-
-    }
-
-    void dodgeLeft()
+    IEnumerator Dodge(Vector3 Start, Vector3 End)
     {
         boostCheck();
         canBoost = false;
         boostTimer = boostTimerDefault;
 
-        dodgeTime += Time.deltaTime;
-        perc = dodgeTime / lerpTime;
-
-        rb.transform.position = Vector3.Lerp(startPos, endPosLeft, perc);
-
-        if (dodgeTime >= dodgeTimeDefault)
+        float lrp;
+        while (dodgeTime < dodgeTimeDefault)
         {
-            dodgeDelay = dodgeDelayDefault;
-            dodgeTime = 0;
-            canDodge = false;
-        }
+            dodgeTime += Time.deltaTime;
+            perc = dodgeTime / dodgeTimeDefault;
 
+            lrp = Mathf.Lerp(Start.x, End.x, perc);
+            rb.transform.position = new Vector3(lrp, rb.transform.position.y, rb.transform.position.z);
+
+
+            yield return null;
+        }
+        dodgeDelay = dodgeDelayDefault;
+        dodgeTime = 0;
+        rb.AddForce(transform.forward * playerMovement.baseForwardSpeed *3, ForceMode.Impulse);
+        yield return null;
     }
 
+    //void dodgeRight()
+    //{
+    //
+    //    boostCheck();
+    //    canBoost = false;
+    //    boostTimer = boostTimerDefault;
+    //
+    //    dodgeTime += Time.unscaledDeltaTime;
+    //    perc = dodgeTime / lerpTime;
+    //
+    //    rb.transform.position = Vector3.Lerp(startPos, endPosRight, perc);
+    //
+    //    if (dodgeTime >= dodgeTimeDefault)
+    //    {
+    //        dodgeDelay = dodgeDelayDefault;
+    //        dodgeTime = 0;
+    //    }
+    //
+    //}
+    //
+    //void dodgeLeft()
+    //{
+    //    boostCheck();
+    //    canBoost = false;
+    //    boostTimer = boostTimerDefault;
+    //
+    //    dodgeTime += Time.deltaTime;
+    //    perc = dodgeTime / lerpTime;
+    //
+    //    rb.transform.position = Vector3.Lerp(startPos, endPosLeft, perc);
+    //
+    //    if (dodgeTime >= dodgeTimeDefault)
+    //    {
+    //        dodgeDelay = dodgeDelayDefault;
+    //        dodgeTime = 0;
+    //        canDodge = false;
+    //    }
+    //
+    //}
+    //
     void boostCheck()
     {
         if (canBoost == true)
@@ -140,10 +172,11 @@ public class PlayerDodge : MonoBehaviour
                 dodgeRender.DodgeRender(hit, rayStart.position);
 
                 playerScore.ScoreCalculate(hit.distance);
-                
-                PlayerMovement.baseMaxSpeed = PlayerMovement.baseMaxSpeed + (10 - (hit.distance / 5));
-                PlayerMovement.maxSpeed = PlayerMovement.maxSpeed + (20 - ((hit.distance * 2) / 5));
 
+                playerMovement.baseMaxSpeed = playerMovement.baseMaxSpeed + (10 - (hit.distance / 5));
+                playerMovement.maxSpeed = playerMovement.maxSpeed + (20 - ((hit.distance * 2) / 5));
+               
+                TimeManager.setSlowMotion();
             }
 
         }
