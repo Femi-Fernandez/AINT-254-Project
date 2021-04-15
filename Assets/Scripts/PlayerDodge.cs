@@ -9,7 +9,7 @@ public class PlayerDodge : MonoBehaviour
     float dodgeDelay;
     float dodgeDelayDefault = .5f;
 
-     float dodgeTime;
+    float dodgeTime;
     public float dodgeTimeDefault = .1f;
     bool canDodge = true;
 
@@ -34,6 +34,8 @@ public class PlayerDodge : MonoBehaviour
     public Transform rayStart;
 
     public timeManager TimeManager;
+
+    public cameraFOVControl cam;
 
     // Start is called before the first frame update
     void Start()
@@ -61,7 +63,7 @@ public class PlayerDodge : MonoBehaviour
                 //dodgeRight();
 
                 StartCoroutine(Dodge(startPos, endPosRight));
-                
+
                 canDodge = false;
             }
             if ((Input.GetKey(KeyCode.LeftArrow) && Input.GetKeyDown(KeyCode.Space)) || (Input.GetKey(KeyCode.A) && Input.GetKeyDown(KeyCode.Space)))
@@ -115,7 +117,7 @@ public class PlayerDodge : MonoBehaviour
         }
         dodgeDelay = dodgeDelayDefault;
         dodgeTime = 0;
-        rb.AddForce(transform.forward * playerMovement.baseForwardSpeed *3, ForceMode.Impulse);
+
         yield return null;
     }
 
@@ -163,25 +165,31 @@ public class PlayerDodge : MonoBehaviour
     {
         if (canBoost == true)
         {
-            RaycastHit hit;         
+            RaycastHit hit;
 
             if (Physics.Raycast(gameObject.transform.position, gameObject.transform.forward, out hit, raycastRange))
             {
                 //Debug.Log(hit.distance);
-                
+
                 dodgeRender.DodgeRender(hit, rayStart.position);
 
                 playerScore.ScoreCalculate(hit.distance);
 
-                playerMovement.baseMaxSpeed = playerMovement.baseMaxSpeed + (10 - (hit.distance / 5));
-                playerMovement.maxSpeed = playerMovement.maxSpeed + (20 - ((hit.distance * 2) / 5));
-               
+                playerMovement.baseMaxSpeed = playerMovement.baseMaxSpeed + (20 - (hit.distance / 5));
+                playerMovement.baseForwardSpeed = playerMovement.baseForwardSpeed + (5 - (hit.distance / 5));
+                //playerMovement.maxSpeed = playerMovement.maxSpeed + (20 - ((hit.distance * 2) / 5));
+
                 TimeManager.setSlowMotion();
+                StartCoroutine(DodgeBoost());
             }
 
         }
 
     }
-
-
+    IEnumerator DodgeBoost()
+    {
+        yield return new WaitForSeconds(.1f);
+        cam.boostFOV();
+        rb.AddForce(transform.forward * playerMovement.baseForwardSpeed, ForceMode.Impulse);
+    }
 }

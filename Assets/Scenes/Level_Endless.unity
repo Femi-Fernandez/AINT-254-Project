@@ -1158,6 +1158,11 @@ PrefabInstance:
       propertyPath: m_Drag
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 7622126786527217330, guid: b7e140bee1ffd25499bfb7ea970d2284,
+        type: 3}
+      propertyPath: m_Mass
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7622126786527217331, guid: b7e140bee1ffd25499bfb7ea970d2284,
         type: 3}
       propertyPath: TimeManager
@@ -1168,6 +1173,11 @@ PrefabInstance:
       propertyPath: dodgeTimeDefault
       value: 0.1
       objectReference: {fileID: 0}
+    - target: {fileID: 7622126786527217331, guid: b7e140bee1ffd25499bfb7ea970d2284,
+        type: 3}
+      propertyPath: cam
+      value: 
+      objectReference: {fileID: 1144113185}
     - target: {fileID: 7622126786527217332, guid: b7e140bee1ffd25499bfb7ea970d2284,
         type: 3}
       propertyPath: m_Name
@@ -1192,6 +1202,21 @@ PrefabInstance:
         type: 3}
       propertyPath: oldOrNew
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7622126786527217333, guid: b7e140bee1ffd25499bfb7ea970d2284,
+        type: 3}
+      propertyPath: baseMaxSpeed
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 7622126786527217334, guid: b7e140bee1ffd25499bfb7ea970d2284,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7622126786527217335, guid: b7e140bee1ffd25499bfb7ea970d2284,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b7e140bee1ffd25499bfb7ea970d2284, type: 3}
@@ -1286,6 +1311,7 @@ GameObject:
   - component: {fileID: 1144113182}
   - component: {fileID: 1144113181}
   - component: {fileID: 1144113180}
+  - component: {fileID: 1144113185}
   - component: {fileID: 1144113184}
   m_Layer: 0
   m_Name: Main Camera
@@ -1307,7 +1333,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1428498494}
-  smoothSpeed: 0.25
+  smoothSpeed: 0.03
   offset: {x: 0, y: 5, z: -10}
 --- !u!81 &1144113181
 AudioListener:
@@ -1434,6 +1460,20 @@ MonoBehaviour:
   m_BeforeTransparentBundles: []
   m_BeforeStackBundles: []
   m_AfterStackBundles: []
+--- !u!114 &1144113185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1144113179}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb0398d0012e91946b221c36ebee8e2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FOVIncTime: 0.2
+  FOVDecTime: 1.5
 --- !u!1 &1241441188
 GameObject:
   m_ObjectHideFlags: 0
@@ -1696,6 +1736,19 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1020493995}
   m_PrefabAsset: {fileID: 0}
+--- !u!135 &1428498495
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1428498482}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1448944533
 GameObject:
   m_ObjectHideFlags: 0
@@ -1964,6 +2017,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slowDownVal: 0.05
   slowdownLength: 2
+  i: 1
 --- !u!4 &1594581070
 Transform:
   m_ObjectHideFlags: 0
@@ -2195,11 +2249,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chunkPrefabs:
   - {fileID: 5647301342098236698, guid: ed6b912106c972d448f71a32387fc625, type: 3}
-  - {fileID: 788977093034975017, guid: b8c221ed28868a64083441bccae6631d, type: 3}
-  - {fileID: 8145790374775139450, guid: fa55027047a9213408e000f2eaf90dbe, type: 3}
-  - {fileID: 560391335110139559, guid: 51788ce8d4ed0824c8963345fcb6b100, type: 3}
-  - {fileID: 5108646250688196710, guid: d26b4612836676e4abfef9e2e2cd4fdc, type: 3}
-  - {fileID: 5959460675839921883, guid: f1a7c3b58cee68d4d90c176fe2877b21, type: 3}
+  - {fileID: 5647301342098236698, guid: ed6b912106c972d448f71a32387fc625, type: 3}
+  - {fileID: 5647301342098236698, guid: ed6b912106c972d448f71a32387fc625, type: 3}
+  - {fileID: 5647301342098236698, guid: ed6b912106c972d448f71a32387fc625, type: 3}
+  - {fileID: 5647301342098236698, guid: ed6b912106c972d448f71a32387fc625, type: 3}
+  - {fileID: 5647301342098236698, guid: ed6b912106c972d448f71a32387fc625, type: 3}
 --- !u!4 &1721585307
 Transform:
   m_ObjectHideFlags: 0

@@ -8,14 +8,11 @@ public class playerMovement : MonoBehaviour
     Rigidbody rb;
     public float horizontalSpeed = 12.0f;
 
-    float forwardSpeed;
-    public float boostForwardSpeed = 40.0f;
-    public float baseForwardSpeed = 20.0f;
+    //float forwardSpeed;
+    public float baseForwardSpeed = 40.0f;
  
 
-    float speed;
-    public float maxSpeed = 200.0f;
-    public float baseMaxSpeed = 100.0f;
+    public float baseMaxSpeed = 200.0f;
     public float currentSpeed;
 
     //public float tiltTime;
@@ -39,10 +36,10 @@ public class playerMovement : MonoBehaviour
       
         //speedtext = this.GetComponent<Text>();
 
-        forwardSpeed = baseForwardSpeed;
+
         playerPause = gameObject.GetComponent<PlayerPause>();
-        speed = maxSpeed;
-        forwardSpeed = boostForwardSpeed;
+        //speed = baseMaxSpeed;
+        //forwardSpeed = baseForwardSpeed;
         jetBoost.SetActive(true);
     }
      
@@ -61,39 +58,20 @@ public class playerMovement : MonoBehaviour
 
     void movePlayer()
     {
-        //
-
         if (!oldOrNew)
         {
             player_model.transform.rotation = Quaternion.Euler(0.0f, 0.0f, rb.velocity.x * -2f);
         }
-        //when boost button is pressed, set speed and acceleration values to their boost values
-       // if (Input.GetKey(KeyCode.LeftShift))
-       // {
-            //speed = maxSpeed;
-            //forwardSpeed = boostForwardSpeed;
-            //jetBoost.SetActive(true);
-        //}
-        //else
-        //{
-        //    //when boost is released, reset to base values.
-        //    speed = baseMaxSpeed;
-        //    forwardSpeed = baseForwardSpeed;
-        //    jetBoost.SetActive(false);
-        //}
 
-        //if speed is less than max speed allow acceleration
-
-        
-        if (rb.velocity.magnitude < speed)
+        if (rb.velocity.magnitude < baseMaxSpeed)
         {
-                rb.AddForce(transform.forward* forwardSpeed, ForceMode.Acceleration);
+                rb.AddForce(transform.forward* baseForwardSpeed, ForceMode.Acceleration);
         }
 
    
         if (Input.GetKey(KeyCode.DownArrow))
         {
-            rb.AddForce(-transform.forward * forwardSpeed, ForceMode.Acceleration);
+            rb.AddForce(-transform.forward * baseForwardSpeed, ForceMode.Acceleration);
         }
 
         if (Input.GetKey(KeyCode.RightArrow))

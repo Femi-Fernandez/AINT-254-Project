@@ -13,6 +13,8 @@ public class TileManager : MonoBehaviour
     private float chunkLength = 300.0f;
     private float destroyBuffer = 332f;
     private int numCurrentTiles = 7;
+
+    private int yDisplacement;
     // Start is called before the first frame update
     void Start()
     {
@@ -53,8 +55,9 @@ public class TileManager : MonoBehaviour
         int stageum = Random.Range(0, 5);
         tile = Instantiate(chunkPrefabs[stageum]) as GameObject;
         tile.transform.SetParent(transform);
-        tile.transform.position = Vector3.forward * spawnZ;
-        spawnZ += chunkLength;
+        tile.transform.position = (Vector3.forward * spawnZ) + (Vector3.down * yDisplacement / 10);
+        yDisplacement++;
+       spawnZ += chunkLength;
         activeChunks.Add(tile);
     }
 }

@@ -6,20 +6,29 @@ public class timeManager : MonoBehaviour
 {
     public float slowDownVal = 0.05f;
     public float slowdownLength = 2f;
+    public bool i = true;
 
     private void Start()
     {
-        Time.timeScale = slowDownVal;
+        //
+        
     }
+
     public void setSlowMotion()
     {
         Time.timeScale = slowDownVal;
-        Time.fixedDeltaTime = Time.timeScale * .02f;
+        
 
 
     }
     private void FixedUpdate()
     {
+        if (i)
+        {
+            Time.timeScale = slowDownVal;
+            Time.fixedDeltaTime = Time.timeScale * .02f;
+            i = false;
+        }
         Time.timeScale += (1 / slowdownLength) * Time.unscaledDeltaTime;
         
 
