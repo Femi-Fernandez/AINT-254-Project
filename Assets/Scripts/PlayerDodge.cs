@@ -37,6 +37,9 @@ public class PlayerDodge : MonoBehaviour
 
     public cameraFOVControl cam;
 
+
+    public GameObject[] electricEffect;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -121,46 +124,6 @@ public class PlayerDodge : MonoBehaviour
         yield return null;
     }
 
-    //void dodgeRight()
-    //{
-    //
-    //    boostCheck();
-    //    canBoost = false;
-    //    boostTimer = boostTimerDefault;
-    //
-    //    dodgeTime += Time.unscaledDeltaTime;
-    //    perc = dodgeTime / lerpTime;
-    //
-    //    rb.transform.position = Vector3.Lerp(startPos, endPosRight, perc);
-    //
-    //    if (dodgeTime >= dodgeTimeDefault)
-    //    {
-    //        dodgeDelay = dodgeDelayDefault;
-    //        dodgeTime = 0;
-    //    }
-    //
-    //}
-    //
-    //void dodgeLeft()
-    //{
-    //    boostCheck();
-    //    canBoost = false;
-    //    boostTimer = boostTimerDefault;
-    //
-    //    dodgeTime += Time.deltaTime;
-    //    perc = dodgeTime / lerpTime;
-    //
-    //    rb.transform.position = Vector3.Lerp(startPos, endPosLeft, perc);
-    //
-    //    if (dodgeTime >= dodgeTimeDefault)
-    //    {
-    //        dodgeDelay = dodgeDelayDefault;
-    //        dodgeTime = 0;
-    //        canDodge = false;
-    //    }
-    //
-    //}
-    //
     void boostCheck()
     {
         if (canBoost == true)
@@ -190,6 +153,20 @@ public class PlayerDodge : MonoBehaviour
     {
         yield return new WaitForSeconds(.1f);
         cam.boostFOV();
+        StartCoroutine(showElectric());
         rb.AddForce(transform.forward * playerMovement.baseForwardSpeed, ForceMode.Impulse);
+    }
+
+    IEnumerator showElectric()
+    {
+        for (int i = 0; i < electricEffect.Length; i++)
+        {
+            electricEffect[i].SetActive(true);
+        }
+        yield return new WaitForSeconds(0.7f);
+        for (int i = 0; i < electricEffect.Length; i++)
+        {
+            electricEffect[i].SetActive(false);
+        }
     }
 }
