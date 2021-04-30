@@ -159,6 +159,7 @@ public class PlayerDodge : MonoBehaviour
 
     IEnumerator showElectric()
     {
+        float t = 0 ;
         for (int i = 0; i < electricEffect.Length; i++)
         {
             electricEffect[i].SetActive(true);
